@@ -1,0 +1,4 @@
+---
+  - include: mdadm.yml
+  - include: mdadm-config.yml
+...

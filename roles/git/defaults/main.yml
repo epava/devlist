@@ -1,0 +1,3 @@
+---
+  repodir: /opt/git/{{reponame}}
+...

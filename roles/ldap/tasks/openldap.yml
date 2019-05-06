@@ -1,0 +1,8 @@
+---
+  - name: Instalar OpenLDAP
+    apt:
+      name: "{{item}}"
+    loop:
+      - slapd
+      - ldap-utils     
+...

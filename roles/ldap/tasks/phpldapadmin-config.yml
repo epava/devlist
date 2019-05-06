@@ -1,0 +1,25 @@
+---
+  - name: Configurar server PHPLdapAdmin
+    replace:
+      path: /etc/phpldapadmin/config.php
+      regexp: "'server','host','127.0.0.1'"
+      replace: 
+        "'server','host','{{item}}'"
+    with_items:
+      - "{{ansible_all_ipv4_addresses}}"
+      
+  - name: Configurar unidad organizativa de PHPLdapAdmin
+    replace:
+      path: /etc/phpldapadmin/config.php
+      regexp: "[$]servers[-][>]setValue[(]'server','base',array[(]'dc=example,dc=com'[)][)][;]"
+      replace: 
+        "$servers->setValue('server','base',array('{{ldapdomaincomponents}}'));"
+      
+  - name: Configurar administrador de PHPLdapAdmin
+    replace:
+      path: /etc/phpldapadmin/config.php
+      regexp: "'login','bind_id','cn=admin,dc=example,dc=com'"
+      replace: 
+        "'login','bind_id','cn=admin,{{ldapdomaincomponents}}'"
+    notify: reload apache2
+...

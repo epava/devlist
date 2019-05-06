@@ -1,0 +1,6 @@
+---
+  ldaptestuserfirstname: Invitado
+  ldaptestusersurname: Prueba
+  ldapfullnametestuser: "Invitado Prueba"
+  dir_installer: /root
+...

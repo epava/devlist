@@ -1,0 +1,13 @@
+---
+  - name: Crear el RAID
+    command: "mdadm --create --verbose /dev/md0 --level={{raid_level}} --raid-devices={{raid_devices_number}} {{raid_devices}}"
+  
+  - name: Dar formato al RAID
+    command: mkfs.ext4 -F /dev/md0
+    
+  - name: Crear fichero de configuracion para el RAID
+    shell: mdadm --detail --scan | tee -a /etc/mdadm/mdadm.conf
+    
+  - name: Actualizar initramfs
+    command: update-initramfs -u
+...

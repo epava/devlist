@@ -1,0 +1,35 @@
+---      
+  - name: Copiar fichero de configuracion config.ini
+    copy:
+      src: /var/www/gitlist/config.ini-example
+      dest: /var/www/gitlist/config.ini
+      remote_src: yes
+  
+  - name: Configurar directorio de los repositorios en config.ini
+    lineinfile:
+      path: /var/www/gitlist/config.ini
+      regexp: '^repositories\[\] ='
+      line:
+        repositories[] = '/opt/git/'
+        
+  - name: Configurar tema de gitlist
+    lineinfile:
+      path: /var/www/gitlist/config.ini
+      regexp: '^theme ='
+      line:
+        theme = "bootstrap3"
+        
+  - name: Configurar titulo de gitlist
+    lineinfile:
+      path: /var/www/gitlist/config.ini
+      regexp: '^title ='
+      line:
+        "title = '{{gitlist_title}}'"
+  
+  - name: Configurar carpeta cache para GitList
+    file:
+      path: /var/www/gitlist/cache
+      state: directory
+      mode: 0777
+    notify: reload apache2
+...

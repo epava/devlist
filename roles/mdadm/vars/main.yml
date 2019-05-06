@@ -1,0 +1,5 @@
+---
+  raid_level: 5
+  raid_devices_number: 3
+  raid_devices: /dev/sdb /dev/sdc /dev/sdd
+...

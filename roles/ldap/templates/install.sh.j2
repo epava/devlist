@@ -1,0 +1,12 @@
+#!/bin/bash
+
+dpkg-reconfigure slapd
+
+# Añadir unidades organizativas
+ldapadd -x -D cn=admin,{{ldapdomaincomponents}} -W -f u_organizativas.ldif
+
+# Añadir grupos a las unidades organizativas correspondientes
+ldapadd -x -D cn=admin,{{ldapdomaincomponents}} -W -f grupos.ldif
+
+# Añadir usuarios a los grupos correspondientes
+ldapadd -x -D cn=admin,{{ldapdomaincomponents}} -W -f usuario.ldif

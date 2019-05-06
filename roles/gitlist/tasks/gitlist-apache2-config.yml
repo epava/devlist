@@ -1,0 +1,36 @@
+---      
+  - name: Deshabilitar web por defecto de Apache2
+    command: a2dissite 000-default.conf
+    args:
+      chdir: /etc/apache2/sites-available
+    
+  - name: Crear configuración para GitList
+    blockinfile:
+      path: /etc/apache2/sites-available/gitlist.conf
+      marker: ""
+      create: yes
+      block: |
+        <VirtualHost *:80>
+          ServerAdmin webmaster@localhost
+          DocumentRoot /var/www/gitlist
+          
+          ErrorLog ${APACHE_LOG_DIR}/error.log
+          CustomLog ${APACHE_LOG_DIR}/access.log combined
+          
+          <Directory /var/www/gitlist>
+            Options Indexes FollowSymLinks
+            AllowOverride All
+            Require all granted
+          </Directory>
+        </VirtualHost>
+        
+  - name: Habilitar configuración de GitList
+    command: a2ensite gitlist.conf
+    args:
+      chdir: /etc/apache2/sites-available
+      
+  - name: Habilitar modulo rewrite de Apache2
+    apache2_module:
+      state: present
+      name: rewrite
+...

@@ -1,0 +1,15 @@
+# ¡La instalación de GitList ha sido un exito!
+
+## Este repositorio ha sido instalado de forma satisfactoria en **{{ansible_hostname}}**
+
+#### Puedes empezar a realizar las pruebas que consideres necesarias para comprobar la funcionalidad de git y gitlist a través de este repositorio.
+
+#### Aqui dispones de unos comandos básicos:
+
+| Comando | Utilidad |
+| ------- | -------- |
+| git clone ssh://git@{{ansible_default_ipv4.address}}:{{repodir}} &nbsp; &nbsp; &nbsp; | Clona este repositorio en el host local |
+| git add --all | Aprueba todos los ficheros modificados |
+| git commit -m **_'comentario'_** | Confirma los cambios y agrega un **_'comentario'_** |
+| git checkout -b **_rama_** | Crea y cambia a una nueva **_rama_** |
+| git push | Sube los cambios al servidor |

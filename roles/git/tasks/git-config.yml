@@ -1,0 +1,67 @@
+---      
+  - name: Crear usuario git
+    user:
+      name: git
+      comment: Usuario para propositos de Git
+      shell: /usr/bin/git-shell
+      home: /opt/git
+      
+  - name: Agregar automontaje del RAID al fstab y montarlo como home de Git
+    mount:
+      path: /opt/git
+      src: /dev/md0
+      fstype: ext4
+      state: mounted
+      opts: defaults,nofail,discard
+  
+  - name: Crear repositorio de prueba
+    command: "git init {{repodir}}"
+    
+  - name: Añadir pruebas
+    file:
+      path: "{{repodir}}/{{repofiletest}}"
+      state: touch
+      group: git
+      owner: git
+      
+  - name: Añadir README.md.j2
+    template:
+      src: install.md.j2
+      dest: "{{repodir}}/README.md"
+  
+  - name: Añadir texto a pruebas
+    lineinfile:
+      path: "{{repodir}}/{{repofiletest}}"
+      line: "Hola mundo"
+      
+  - name: Git add
+    command: git add --all
+    args:
+      chdir: "{{repodir}}"
+    
+  - name: Git conf mail
+    git_config:
+      name: user.email
+      repo: "{{repodir}}"
+      scope: global
+      value: 'git@debian.local'
+      
+  - name: Git conf name
+    git_config:
+      name: user.name
+      repo: "{{repodir}}"
+      scope: global
+      value: 'git'
+
+  - name: Prueba commit para el repositorio de muestra
+    command: git commit -m 'Prueba primer repo' 
+    args:
+      chdir: "{{repodir}}"
+      
+  - name: Reconfigurar propietario de la carpeta git y su contenido
+    file:
+      path: /opt/git
+      owner: git
+      group: git
+      recurse: yes
+...

@@ -1,0 +1,17 @@
+---         
+  - name: Descargar tarball en /var/www
+    get_url:
+      url: https://github.com/klaussilveira/gitlist/releases/download/1.0.2/gitlist-1.0.2.tar.gz
+      dest: /var/www/gitlist.tar.gz
+  
+  - name: Descomprimir tarball
+    unarchive:
+      src: /var/www/gitlist.tar.gz
+      dest: /var/www
+      remote_src: yes
+      
+  - name: Limpiar tarball
+    file:
+      path: /var/www/gitlist.tar.gz
+      state: absent
+...

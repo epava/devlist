@@ -1,0 +1,10 @@
+---
+  # Dominio developers.local
+  ldapdomaincomponents:  dc=developers,dc=local
+
+  # Nombre del usuario de prueba
+  ldaptestusername: prueba
+  
+  # la contraseña es admin
+  ldaptestusernamepasswd: "{MD5}ISMvKXpXpadDiUoOSoAfww=="
+...

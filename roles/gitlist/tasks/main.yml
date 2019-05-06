@@ -1,0 +1,5 @@
+---
+  - include: gitlist.yml
+  - include: gitlist-apache2-config.yml
+  - include: gitlist-config.yml   
+...

@@ -1,0 +1,15 @@
+---
+  - name: Agregar repositorio requerido por PHPLdapAdmin
+    apt_repository:
+      repo: deb http://ftp.es.debian.org/debian/ stretch-backports main
+      filename: phpldapadmin
+      state: present
+      update_cache: yes
+  
+  - name: Instalar PHPLdapAdmin
+    apt:
+      name: "{{item}}"
+    loop:
+      - phpldapadmin
+      - php-xml
+...

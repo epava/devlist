@@ -1,0 +1,46 @@
+---
+  - name: Configurar OpenLDAP
+    lineinfile:
+      path: /etc/ldap/ldap.conf
+      regexp: '^#BASE'
+      line:
+        "BASE {{ldapdomaincomponents}}"
+        
+  - name: Configurar OpenLDAP
+    lineinfile:
+      path: /etc/ldap/ldap.conf
+      regexp: '^#URI'
+      line:
+        "URI ldap://{{item}}:389"
+    with_items:
+      - "{{ansible_all_ipv4_addresses}}"
+
+  - name: Eliminar posibles carpetas conflictivas
+    file: 
+      path: /var/lib/ldap
+      state: absent
+      
+  - name: Crear script bash para finalizar la configuración de OpenLDAP
+    template:
+      src: install.sh.j2
+      dest: "{{dir_installer}}/install.sh"
+      mode: '0700'
+      
+  - name: Unidades organizativas OpenLDAP
+    template:
+      src: u_organizativas.ldif.j2
+      dest: "{{dir_installer}}/u_organizativas.ldif"
+      mode: '0700'
+      
+  - name: Grupos OpenLDAP
+    template:
+      src: grupos.ldif.j2
+      dest: "{{dir_installer}}/grupos.ldif"
+      mode: '0700'
+      
+  - name: Usuario de prueba OpenLDAP
+    template:
+      src: usuario.ldif.j2
+      dest: "{{dir_installer}}/usuario.ldif"
+      mode: '0700'
+...
