@@ -1,7 +1,7 @@
 ---
   - name: Configurar server PHPLdapAdmin
     replace:
-      path: /etc/phpldapadmin/config.php
+      path: "{{ldapphpconf}}"
       regexp: "'server','host','127.0.0.1'"
       replace: 
         "'server','host','{{item}}'"
@@ -10,14 +10,14 @@
       
   - name: Configurar unidad organizativa de PHPLdapAdmin
     replace:
-      path: /etc/phpldapadmin/config.php
+      path: "{{ldapphpconf}}"
       regexp: "[$]servers[-][>]setValue[(]'server','base',array[(]'dc=example,dc=com'[)][)][;]"
       replace: 
         "$servers->setValue('server','base',array('{{ldapdomaincomponents}}'));"
       
   - name: Configurar administrador de PHPLdapAdmin
     replace:
-      path: /etc/phpldapadmin/config.php
+      path: "{{ldapphpconf}}"
       regexp: "'login','bind_id','cn=admin,dc=example,dc=com'"
       replace: 
         "'login','bind_id','cn=admin,{{ldapdomaincomponents}}'"

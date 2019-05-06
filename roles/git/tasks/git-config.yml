@@ -3,12 +3,12 @@
     user:
       name: git
       comment: Usuario para propositos de Git
-      shell: /usr/bin/git-shell
-      home: /opt/git
+      shell: "{{gitshell}}"
+      home: "{{githome}}"
       
   - name: Agregar automontaje del RAID al fstab y montarlo como home de Git
     mount:
-      path: /opt/git
+      path: "{{githome}}"
       src: /dev/md0
       fstype: ext4
       state: mounted
@@ -44,7 +44,7 @@
       name: user.email
       repo: "{{repodir}}"
       scope: global
-      value: 'git@debian.local'
+      value: 'git@developers.local'
       
   - name: Git conf name
     git_config:
@@ -60,7 +60,7 @@
       
   - name: Reconfigurar propietario de la carpeta git y su contenido
     file:
-      path: /opt/git
+      path: "{{githome}}"
       owner: git
       group: git
       recurse: yes

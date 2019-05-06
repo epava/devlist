@@ -1,3 +1,4 @@
 ---
-  gitlist_title: AulaCampus GitList
+  # Nombre que se verá en GitList
+  gitlist_title: DevList
 ...

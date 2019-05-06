@@ -1,5 +1,5 @@
 ---
   - name: Instalar PHP
     apt:
-      name: "php"
+      name: "{{phppackage}}"
 ...

@@ -1,5 +1,10 @@
 ---
+  #Nivel del raid, si se quiere un RAID5 se debe indicar nivel "5"
   raid_level: 5
+  
+  #Indicar el numero de dispositivos que se van a incluir en el raid
   raid_devices_number: 3
+  
+  #Indicar los dispositivos que se añadirán al raid
   raid_devices: /dev/sdb /dev/sdc /dev/sdd
 ...

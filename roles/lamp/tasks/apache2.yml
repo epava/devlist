@@ -1,5 +1,5 @@
 ---
   - name: Instalar Apache2
     apt:
-      name: "apache2"
+      name: "{{apache2package}}"
 ...

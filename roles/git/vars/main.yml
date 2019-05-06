@@ -1,4 +1,7 @@
 ---
-  reponame: repo1
-  repofiletest: prueba.txt
+  # Nombre del repositorio
+  reponame: demo
+  
+  #Nombre del fichero de prueba
+  repofiletest: commit_test.txt
 ...

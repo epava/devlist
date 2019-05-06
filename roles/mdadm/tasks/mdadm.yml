@@ -1,5 +1,5 @@
 ---  
   - name: Instalar mdadm
     apt:
-      name: mdadm
+      name: "{{mdadmpackage}}"
 ...

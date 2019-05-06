@@ -3,6 +3,5 @@
     apt:
       name: "{{item}}"
     loop:
-      - slapd
-      - ldap-utils     
+      - "{{ldap_packages}}"
 ...

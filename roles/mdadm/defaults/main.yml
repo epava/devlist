@@ -1,0 +1,4 @@
+---
+  mdadmconf: /etc/mdadm/mdadm.conf
+  mdadmpackage: mdadm
+...

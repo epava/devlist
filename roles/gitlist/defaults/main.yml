@@ -1,0 +1,6 @@
+---
+  gitlistpath: /var/www/gitlist
+  configpath: "{{gitlistpath}}/config.ini"
+  apachesites: /etc/apache2/sites-available
+  apacheservice: apache2
+...

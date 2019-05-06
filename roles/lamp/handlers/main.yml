@@ -1,11 +1,11 @@
 ---
   - name: enable apache2
     service:
-      name: apache2
+      name: "{{apacheservice}}"
       enabled: yes
       
   - name: reload apache2
     service:
-      name: apache2
+      name: "{{apacheservice}}"
       state: restarted
 ...

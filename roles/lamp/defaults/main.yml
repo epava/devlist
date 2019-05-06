@@ -1,0 +1,5 @@
+---
+  apacheservice: apache2
+  apache2package: apache2
+  phppackage: php
+...

@@ -1,3 +1,6 @@
 ---
-  repodir: /opt/git/{{reponame}}
+  gitpackage: git
+  gitshell: /usr/bin/git-shell
+  githome: /opt/git
+  repodir: "{{githome}}/{{reponame}}"
 ...

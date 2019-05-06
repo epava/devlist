@@ -1,14 +1,14 @@
 ---
   - name: Configurar OpenLDAP
     lineinfile:
-      path: /etc/ldap/ldap.conf
+      path: "{{ldapconf}}"
       regexp: '^#BASE'
       line:
         "BASE {{ldapdomaincomponents}}"
         
   - name: Configurar OpenLDAP
     lineinfile:
-      path: /etc/ldap/ldap.conf
+      path: "{{ldapconf}}"
       regexp: '^#URI'
       line:
         "URI ldap://{{item}}:389"
@@ -38,9 +38,9 @@
       dest: "{{dir_installer}}/grupos.ldif"
       mode: '0700'
       
-  - name: Usuario de prueba OpenLDAP
+  - name: Usuarios de prueba OpenLDAP
     template:
       src: usuario.ldif.j2
-      dest: "{{dir_installer}}/usuario.ldif"
+      dest: "{{dir_installer}}/usuarios.ldif"
       mode: '0700'
 ...
