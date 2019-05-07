@@ -8,6 +8,7 @@
 
 | Comando | Utilidad |
 | ------- | -------- |
+| git clone git://{{ansible_default_ipv4.address}}/{{reponame}} | Clona este repositorio como usuario anonimo |
 | git clone ssh://git@{{ansible_default_ipv4.address}}:{{repodir}} &nbsp; &nbsp; &nbsp; | Clona este repositorio en el host local |
 | git add --all | Aprueba todos los ficheros modificados |
 | git commit -m **_'comentario'_** | Confirma los cambios y agrega un **_'comentario'_** |

@@ -52,11 +52,47 @@
       repo: "{{repodir}}"
       scope: global
       value: 'git'
-
+      
+  - name: Cambiar el comentario del repositorio
+    lineinfile:
+      path: "{{repodir}}/.git/description"
+      regexp: "^Unnamed repository"
+      line:
+        Repositorio de prueba post-instalación
+        
   - name: Prueba commit para el repositorio de muestra
     command: git commit -m 'Prueba primer repo' 
     args:
       chdir: "{{repodir}}"
+      
+  - name: Crear servicio para iniciar el demonio de git
+    template:
+      src: daemon.j2
+      dest: "/etc/init.d/dgit"
+      mode: '766'
+      
+  - name: Registrar servicio dgit
+    shell: update-rc.d dgit "{{ item }}"
+    with_items:
+      - "defaults"
+      - "enable"
+  
+  - name: Iniciar el servicio dgit
+    service:
+      name: dgit
+      enabled: yes
+      state: started
+
+  # - name: Iniciar demonio dgit
+    # command: systemctl daemon-reload
+    
+  # - name: Iniciar demonio dgit
+    # command: systemctl start dgit
+      
+  - name: Acceso público al repositorio
+    file:
+      path: "{{repodir}}/.git/git-daemon-export-ok"
+      state: touch
       
   - name: Reconfigurar propietario de la carpeta git y su contenido
     file:
