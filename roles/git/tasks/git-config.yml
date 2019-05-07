@@ -82,12 +82,6 @@
       name: dgit
       enabled: yes
       state: started
-
-  # - name: Iniciar demonio dgit
-    # command: systemctl daemon-reload
-    
-  # - name: Iniciar demonio dgit
-    # command: systemctl start dgit
       
   - name: Acceso público al repositorio
     file:
