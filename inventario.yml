@@ -1,6 +1,6 @@
-git ansible_user=root ansible_connection=ssh ansible_host=192.168.2.199
+git ansible_user=root ansible_connection=ssh ansible_host=192.168.2.72
 
-ldap ansible_user=root ansible_connection=ssh ansible_host=192.168.2.199
+ldap ansible_user=root ansible_connection=ssh ansible_host=192.168.2.224
 
 
 [lamp]
