@@ -2,7 +2,4 @@
   - name: Instalar OpenLDAP
     apt:
       name: "slapd,ldap-utils"
-    #   name: "{{item}}"
-    # loop:
-    #   - "{{ldap_packages}}"
 ...

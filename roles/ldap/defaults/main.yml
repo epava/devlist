@@ -6,10 +6,10 @@
   ldapfullnametestuser: "Invitado Prueba"
   dir_installer: /root
   apacheservice: apache2
-  ldap_packages: 
-    - slapd
-    - ldap-utils
-  phpldapadmin_packages:
-    - phpldapadmin
-    - php-xml
+  # ldap_packages: 
+  #   - slapd
+  #   - ldap-utils
+  # phpldapadmin_packages:
+  #   - phpldapadmin
+  #   - php-xml
 ...

@@ -5,10 +5,8 @@
       filename: phpldapadmin
       state: present
       update_cache: yes
-  
+
   - name: Instalar PHPLdapAdmin
     apt:
-      name: "{{item}}"
-    loop:
-      - "{{phpldapadmin_packages}}"
+      name: "phpldapadmin,php-xml"
 ...

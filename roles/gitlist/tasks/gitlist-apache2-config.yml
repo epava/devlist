@@ -1,39 +1,39 @@
----      
+---
   - name: Deshabilitar web por defecto de Apache2
     command: a2dissite 000-default.conf
     args:
       chdir: "{{apachesites}}"
-      
+
   - name: Descartar fichero existente para evitar duplicados
     file:
       path: "{{apachesites}}/gitlist.conf"
       state: absent
-    
+
   - name: Crear configuración para GitList
     blockinfile:
-      path: "{{apachesites}}/gitlist.conf"
+      dest: "{{apachesites}}/gitlist.conf"
       marker: ""
       create: yes
       block: |
         <VirtualHost *:80>
           ServerAdmin webmaster@localhost
           DocumentRoot /var/www/gitlist
-          
+
           ErrorLog ${APACHE_LOG_DIR}/error.log
           CustomLog ${APACHE_LOG_DIR}/access.log combined
-          
+
           <Directory /var/www/gitlist>
             Options Indexes FollowSymLinks
             AllowOverride All
             Require all granted
           </Directory>
         </VirtualHost>
-        
+
   - name: Habilitar configuración de GitList
     command: a2ensite gitlist.conf
     args:
       chdir: "{{apachesites}}"
-      
+
   - name: Habilitar modulo rewrite de Apache2
     apache2_module:
       state: present
