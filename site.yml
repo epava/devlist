@@ -5,36 +5,36 @@
     gather_facts: false
     tasks:
       - name: Instalar LAMP
-        import_role:
+        include_role:
           name: lamp
-          
+
   - name: Instalación MDADM
     hosts: git
     gather_facts: false
     tasks:
       - name: Instalar MDADM
-        import_role:
+        include_role:
           name: mdadm
-          
+
   - name: Instalación Git
     hosts: git
     tasks:
       - name: Instalar Git
-        import_role:
+        include_role:
           name: git
-          
+
   - name: Instalación GitList
     hosts: git
     gather_facts: false
     tasks:
       - name: Instalar GitList
-        import_role:
+        include_role:
           name: gitlist
-          
+
   - name: Instalación OpenLdap
     hosts: ldap
     tasks:
       - name: Instalar OpenLdap
-        import_role:
+        include_role:
           name: ldap
 ...
