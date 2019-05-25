@@ -1,5 +1,5 @@
----   
+---
   - name: Instalar Git
     apt:
-      name: "{{gitpackage}}"
+      name: "git,php-xml"
 ...

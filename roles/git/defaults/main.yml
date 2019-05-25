@@ -1,5 +1,5 @@
 ---
-  gitpackage: git
+  # gitpackage: git
   gitshell: /usr/bin/git-shell
   githome: /opt/git
   repodir: "{{githome}}/{{reponame}}"
