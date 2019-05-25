@@ -71,6 +71,9 @@
       dest: "/etc/init.d/dgit"
       mode: '766'
 
+  - name: Configurar tamaño de /run para el correcto registro deool servicio dgit
+    shell: mount -t tmpfs tmpfs /run -o remount,size=85M
+
   - name: Registrar servicio dgit
     shell: update-rc.d dgit "{{ item }}"
     with_items:
