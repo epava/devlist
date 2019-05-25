@@ -1,31 +1,31 @@
----      
+---
   - name: Copiar fichero de configuracion config.ini
     copy:
       src: "{{configpath}}-example"
       dest: "{{configpath}}"
       remote_src: yes
-  
+
   - name: Configurar directorio de los repositorios en config.ini
     lineinfile:
-      path: "{{configpath}}"
+      dest: "{{configpath}}"
       regexp: '^repositories\[\] ='
       line:
         repositories[] = '/opt/git/'
-        
+
   - name: Configurar tema de gitlist
     lineinfile:
-      path: "{{configpath}}"
+      dest: "{{configpath}}"
       regexp: '^theme ='
       line:
         theme = "bootstrap3"
-        
+
   - name: Configurar titulo de gitlist
     lineinfile:
-      path: "{{configpath}}"
+      dest: "{{configpath}}"
       regexp: '^title ='
       line:
         "title = '{{gitlist_title}}'"
-  
+
   - name: Configurar carpeta cache para GitList
     file:
       path: "{{gitlistpath}}/cache"
